@@ -1,30 +1,23 @@
 #!/usr/bin/python3
-
 import sys
-from math import sqrt
+from decimal import Decimal
 
 if len(sys.argv) != 2:
     print('Usage: factors <file>')
     sys.exit(1)
-buf = {}
 file =  open(sys.argv[1], "r")
 
 for line in file:
     number = int(line)
-    if number in buf:
-        print(buf[number])
-        continue
-    n = int(sqrt(number)) + 1
-    for p in range(2, n):
+    n = Decimal(number).sqrt() + 1
+    for p in range(2, int(n)):
         if number % p == 0:
             q = number // p
             print(f"{number}={q}*{p}")
-            buf[number] = f"{number}={q}*{p}"
             break
-        elif number % n == 0:
-            q = number // n
+        elif number % int(n) == 0:
+            q = number // int(n)
             print(f"{number}={q}*{n}")
-            buf[number] = f"{number}={q}*{n}"
             break
         n -= 1
 file.close()
