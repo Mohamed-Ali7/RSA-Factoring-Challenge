@@ -1,17 +1,24 @@
 #!/usr/bin/python3
 
 import sys
+from math import sqrt
 
 file =  open(sys.argv[1], "r")
 
 number = 0
 q = 2
+n = 0
 for line in file:
     number = int(line)
+    n = int(sqrt(number))
     for p in range(2, number // 2 + 1):
         if number % p == 0:
             q = number // p
             print(f"{number}={p}*{q}")
             break
-
+        elif number % n == 0:
+            q = number // n
+            print(f"{number}={n}*{q}")
+            break
+        n -= 1
 file.close()
