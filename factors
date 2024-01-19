@@ -14,11 +14,11 @@ for line in file:
     for p in range(2, number // 2 + 1):
         if number % p == 0:
             q = number // p
-            print(f"{number}={p}*{q}")
+            print(f"{number}={q}*{p}")
             break
         elif number % n == 0:
             q = number // n
-            print(f"{number}={n}*{q}")
+            print(f"{number}={q}*{n}")
             break
         n -= 1
 file.close()
