@@ -6,19 +6,25 @@ from math import sqrt
 if len(sys.argv) != 2:
     print('Usage: factors <file>')
     sys.exit(1)
+buf = {}
 file =  open(sys.argv[1], "r")
 
 for line in file:
     number = int(line)
+    if number in buf:
+        print(buf[number])
+        continue
     n = int(sqrt(number)) + 1
     for p in range(2, n):
         if number % p == 0:
             q = number // p
             print(f"{number}={q}*{p}")
+            buf[number] = f"{number}={q}*{p}"
             break
         elif number % n == 0:
             q = number // n
             print(f"{number}={q}*{n}")
+            buf[number] = f"{number}={q}*{n}"
             break
         n -= 1
 file.close()
