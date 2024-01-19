@@ -1,0 +1,17 @@
+#!/usr/bin/python3
+
+import sys
+
+file =  open(sys.argv[1], "r")
+
+number = 0
+q = 2
+for line in file:
+    number = int(line)
+    for p in range(2, number // 2 + 1):
+        if number % p == 0:
+            q = number // p
+            print(f"{number}={p}*{q}")
+            break
+
+file.close()
