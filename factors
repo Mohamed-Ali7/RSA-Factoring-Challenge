@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import sys
-from decimal import Decimal
+from math import sqrt
 
 if len(sys.argv) != 2:
     print('Usage: factors <file>')
@@ -9,14 +9,14 @@ file =  open(sys.argv[1], "r")
 
 for line in file:
     number = int(line)
-    n = Decimal(number).sqrt() + 1
-    for p in range(2, int(n)):
+    n = int(sqrt(number)) + 1
+    for p in range(2, n):
         if number % p == 0:
             q = number // p
             print(f"{number}={q}*{p}")
             break
-        elif number % int(n) == 0:
-            q = number // int(n)
+        elif number % n == 0:
+            q = number // n
             print(f"{number}={q}*{n}")
             break
         n -= 1
