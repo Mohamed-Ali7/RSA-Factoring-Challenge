@@ -7,36 +7,29 @@ if len(sys.argv) != 2:
     sys.exit(1)
 
 def is_prime(num):
-    return num % 2 == 1 and num != 9
+    if num == 2:
+        return 1
+    if num == 9:
+        return 0
+    return num % 2 == 1
 
 file =  open(sys.argv[1], "r")
 
 for line in file:
     number = int(line)
-    if number % 2 == 0:
-        q = number // 2
-        if not is_prime(q):
-            continue
-        print(f"{number}={q}*{2}")
     n = int(sqrt(number)) + 1
-    for p in range(2, n + 1):
+    for p in range(2, n):
         if number % p == 0:
-            if not is_prime(p):
-                continue
-            q = number // p
-            if not is_prime(q):
-                continue
-            print(f"{number}={q}*{p}")
-            break
+            if is_prime(p):
+                q = number // p
+                if is_prime(q):
+                    print(f"{number}={q}*{p}")
+                    break
         elif number % n == 0:
-            if not is_prime(n):
-                n -= 1
-                continue
-            q = number // n
-            
-            if not is_prime(q):
-                continue
-            print(f"{number}={q}*{n}")
-            break
+            if is_prime(n):
+                q = number // n
+                if is_prime(q):
+                    print(f"{number}={q}*{n}")
+                    break
         n -= 1
 file.close()
